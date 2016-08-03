@@ -1,0 +1,16 @@
+{
+  "name": "testpkg",
+  "version": "0.0.1",
+  "description": "Some description of testpkg",
+  "author": {
+    "name": "mean scaffold"
+  },
+  "mean": "0.6.1",
+  "dependencies": {
+    "mapnik" : "3.x"
+  },
+  "license": "MIT",
+  "scripts": {
+    "postinstall" : "bower install"
+  }
+}
