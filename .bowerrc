@@ -1,7 +1,5 @@
 {
   "directory": "bower_components",
-  "proxy": "http://131.175.57.2:8080",
-  "https-proxy":"http://131.175.57.2:8080",
   "storage": {
           "packages": ".bower-cache",
           "registry": ".bower-registry"
