@@ -12,7 +12,7 @@
      <StyleName>style</StyleName>
      <Datasource>
         <Parameter name="type">shape</Parameter>
-        <Parameter name="file">data/world_latlon.shp</Parameter>
+        <Parameter name="file">testdata/world_latlon.shp</Parameter>
      </Datasource>
   </Layer>
 
