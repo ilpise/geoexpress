@@ -5,14 +5,28 @@
   <Style name="style">
      <Rule>
        <PolygonSymbolizer />
-     </Rule>    
+     </Rule>
    </Style>
-     
+
+   <Style name="styledue">
+      <Rule>
+        <PointSymbolizer />
+      </Rule>
+    </Style>
+
   <Layer name="layer" srs="+init=epsg:4326">
      <StyleName>style</StyleName>
      <Datasource>
         <Parameter name="type">shape</Parameter>
         <Parameter name="file">testdata/world_latlon.shp</Parameter>
+     </Datasource>
+  </Layer>
+
+  <Layer name="layerdue" srs="+init=epsg:4326">
+     <StyleName>styledue</StyleName>
+     <Datasource>
+        <Parameter name="type">shape</Parameter>
+        <Parameter name="file">testdata/nord-est-latest.shp/points.shp</Parameter>
      </Datasource>
   </Layer>
 

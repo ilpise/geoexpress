@@ -19,27 +19,27 @@
     var concurrency = 32;
     var bufferSize = 0;
 
-    var created = 0;
-    var maps = new Pool(function() {
-        var map = new mapnik.Map(256, 256);
-        map.bufferSize = bufferSize;
-        map.load(stylesheet, {
-            strict: true,
-            base: dir
-        }, function(err, map) {
-            if (err) throw err;
-            map.zoomAll();
-            created++;
-            //util.print('\rCreating map objects (' + created + '/' + args.concurrency + ')...');
-            maps.release(map);
-        });
-    }, concurrency);
+
 
     module.exports = function(Testpkg) {
 
       return {
         gws: function(req, res) {
-          // console.log('------------ gws entered ----------------')
+          // console.log('------------ gws entered ----------------')          
+          var maps = new Pool(function() {
+              var map = new mapnik.Map(256, 256);
+              map.bufferSize = bufferSize;
+              map.load(stylesheet, {
+                  strict: true,
+                  base: dir
+              }, function(err, map) {
+                  if (err) throw err;
+                  map.zoomAll();
+                  // created++;
+                  //util.print('\rCreating map objects (' + created + '/' + args.concurrency + ')...');
+                  maps.release(map);
+              });
+          }, concurrency);
 
           for (var key in req.query) {
             req.query[key.toLowerCase()] = req.query[key];
