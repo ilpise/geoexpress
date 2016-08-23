@@ -12,20 +12,18 @@
     // node-mapnik-sample-code/utils/pool.js
     var Pool = require('./pool');
 
-    // TODO define directoryes where to store .xml and .shp files
+    // TODO define directories where to store .xml and .shp files
     var dir = __dirname;
 
     var stylesheet = dir + '/world_latlon.xml';
     var concurrency = 32;
     var bufferSize = 0;
 
-
-
     module.exports = function(Testpkg) {
 
       return {
         gws: function(req, res) {
-          // console.log('------------ gws entered ----------------')          
+          // console.log('------------ gws entered ----------------')
           var maps = new Pool(function() {
               var map = new mapnik.Map(256, 256);
               map.bufferSize = bufferSize;

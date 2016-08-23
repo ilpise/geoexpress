@@ -1,7 +1,15 @@
 <div class="testpkg-example" ng-controller="TestpkgController">
   <h1>Example view from your new awesome package</h1>
   <h2>Package: <span>{{package.name}}</span></h2>
-  <ol>
+
+  <mean-upload file-dest="'/packages/files/'" upload-callback="uploadFinished(files)" upload-file-callback="uploadFileCallback(file)"></mean-upload>
+
+  <div data-ng-repeat="file in files">
+      <img data-ng-src="{{file.src}}" alt="">
+  </div>
+
+
+  <!-- <ol>
     <li>
       <a ui-sref="testpkg circles example({circle:'anyone'})">Server route that anyone can access</a>
     </li>
@@ -20,5 +28,5 @@
   <p class="alert alert-info">You can find your package in /packages/testpkg</p>
   </br>
   <h3><a href="http://learn.mean.io">Documentation</a></h3>
-  </br>
+  </br> -->
 </div>
