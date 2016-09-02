@@ -1,5 +1,9 @@
 {
   "name": "testpkg",
   "version": "0.0.1",
-  "dependencies": {}
+  "dependencies": {
+    "ui-leaflet": "^1.0.1",
+    "angular-openlayers-directive": "^1.15.2",
+    "angular-leaflet-directive": "^0.10.0"
+  }
 }

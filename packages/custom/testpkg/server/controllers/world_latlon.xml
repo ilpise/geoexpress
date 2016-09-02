@@ -14,7 +14,7 @@
       </Rule>
     </Style>
 
-  <Layer name="layer" srs="+init=epsg:4326">
+  <Layer name="layer" srs="+init=epsg:4326" status="off">
      <StyleName>style</StyleName>
      <Datasource>
         <Parameter name="type">shape</Parameter>
