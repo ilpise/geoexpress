@@ -1,5 +1,5 @@
 {
-  "name": "meanStarter",
+  "name": "geoExpress",
   "version": "0.0.1",
   "description": "A starter layout / theme package for MEAN",
   "author": {
@@ -7,10 +7,11 @@
   },
   "mean": "0.6.0",
   "dependencies": {
+    "meanio-admin": "git://github.com/linnovate/meanio-admin.git",
+    "meanio-circles": "git://github.com/linnovate/meanio-circles.git",
     "meanio-system": "git://github.com/linnovate/meanio-system.git",
     "meanio-users": "git://github.com/linnovate/meanio-users.git",
-    "meanio-circles": "git://github.com/linnovate/meanio-circles.git",
-    "meanio-admin": "git://github.com/linnovate/meanio-admin.git"
+    "xml": "^1.0.1"
   },
   "license": "MIT"
 }

@@ -1,7 +1,7 @@
 'use strict';
 
 //Setting up route
-angular.module('mean.meanStarter').config(['$meanStateProvider', '$urlRouterProvider',
+angular.module('mean.geoExpress').config(['$meanStateProvider', '$urlRouterProvider',
   function($meanStateProvider, $urlRouterProvider) {
     // For unmatched routes:
     $urlRouterProvider.otherwise('/');
@@ -10,7 +10,7 @@ angular.module('mean.meanStarter').config(['$meanStateProvider', '$urlRouterProv
     $meanStateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'meanStarter/views/system/index.html'
+        templateUrl: 'geoExpress/views/system/index.html'
       });
   }
 ]).config(['$locationProvider',

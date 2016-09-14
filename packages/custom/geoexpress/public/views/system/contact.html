@@ -1,0 +1,154 @@
+<section data-ng-controller="ContactController" data-ng-init="init()">
+  <!-- <section data-ng-controller="GeoExpressController" data-ng-init="init()"> -->
+<!--  -->
+  <h1> Contact Information</h1>
+  <!-- <div>{{contact.ContactInformation[0].ContactPersonPrimary[0].ContactPerson}}</div>
+  <div>{{contact.ContactInformation[0].ContactPersonPrimary[1].ContactOrganization}}</div>
+  <div>{{contact.ContactInformation[1].ContactPosition}}</div>
+  <div>{{contact.ContactInformation[2].ContactAddress[0].AddressType}}</div>
+  <div>{{contact.ContactInformation[2].ContactAddress[1].City}}</div>
+  <div>{{contact.ContactInformation[2].ContactAddress[2].Country}}</div>
+  <div>{{contact.ContactInformation[3].ContactElectronicMailAddress}}</div> -->
+
+  <form name="contactForm" class="form-horizontal col-md-6" role="form" data-ng-submit="createorupdate(contactForm.$valid)" novalidate>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Primary contact</h3>
+      </div>
+      <div class="panel-body">
+        <div class="form-group" ng-class="{ 'has-error' : submitted && contactForm.contact.$invalid }">
+          <label mean-token="'create-title'" for="contact" class="col-md-3 control-label">Contact</label>
+          <div class="col-md-9">
+            <input name="contact" type="text" class="form-control" data-ng-model="contact.ContactInformation.ContactPersonPrimary.ContactPerson" placeholder="Contact name">
+            <!-- <div ng-show="submitted && articleForm.title.$invalid" class="help-block">
+              <p ng-show="articleForm.title.$error.required">Title is required</p>
+            </div> -->
+          </div>
+
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : submitted && contactForm.organization.$invalid }">
+          <label mean-token="'create-content'" for="organization" class="col-md-3 control-label">Organization</label>
+          <div class="col-md-9">
+            <input name="organization" type="text" class="form-control" data-ng-model="contact.ContactInformation.ContactPersonPrimary.ContactOrganization" placeholder="Organization name" >
+            <!-- <div ng-show="submitted && articleForm.content.$invalid" class="help-block">
+              <p ng-show="articleForm.content.$error.required">Content is required</p>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : submitted && contactForm.organization.$invalid }">
+          <label mean-token="'create-content'" for="position" class="col-md-3 control-label">Position</label>
+          <div class="col-md-9">
+            <input name="position" type="text" class="form-control" data-ng-model="contact.ContactInformation.ContactPosition" placeholder="Position" >
+            <!-- <div ng-show="submitted && articleForm.content.$invalid" class="help-block">
+              <p ng-show="articleForm.content.$error.required">Content is required</p>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : submitted && contactForm.organization.$invalid }">
+          <label mean-token="'create-content'" for="e-mail" class="col-md-3 control-label">Email</label>
+          <div class="col-md-9">
+            <input name="email" type="text" class="form-control" data-ng-model="contact.ContactInformation.ContactElectronicMailAddress" placeholder="Email" >
+            <!-- <div ng-show="submitted && articleForm.content.$invalid" class="help-block">
+              <p ng-show="articleForm.content.$error.required">Content is required</p>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : submitted && contactForm.organization.$invalid }">
+          <label mean-token="'create-content'" for="voice" class="col-md-3 control-label">Voice</label>
+          <div class="col-md-9">
+            <input name="voice" type="text" class="form-control" data-ng-model="contact.ContactInformation.ContactVoiceTelephone" placeholder="Voice phone number" >
+            <!-- <div ng-show="submitted && articleForm.content.$invalid" class="help-block">
+              <p ng-show="articleForm.content.$error.required">Content is required</p>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : submitted && contactForm.organization.$invalid }">
+          <label mean-token="'create-content'" for="fax" class="col-md-3 control-label">Fax</label>
+          <div class="col-md-9">
+            <input name="fax" type="text" class="form-control" data-ng-model="contact.ContactInformation.ContactFacsimileTelephone" placeholder="Fax phone number" >
+            <!-- <div ng-show="submitted && articleForm.content.$invalid" class="help-block">
+              <p ng-show="articleForm.content.$error.required">Content is required</p>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Address</h3>
+        </div>
+        <div class="panel-body">
+          <div class="form-group" ng-class="{ 'has-error' : submitted && contactForm.contact.$invalid }">
+            <label mean-token="'create-title'" for="address_type" class="col-md-3 control-label">Addess type</label>
+            <div class="col-md-9">
+              <input name="address_type" type="text" class="form-control" data-ng-model="contact.ContactInformation.ContactAddress.AddressType" placeholder="Address type">
+              <!-- <div ng-show="submitted && articleForm.title.$invalid" class="help-block">
+                <p ng-show="articleForm.title.$error.required">Title is required</p>
+              </div> -->
+            </div>
+
+          </div>
+          <div class="form-group" ng-class="{ 'has-error' : submitted && contactForm.organization.$invalid }">
+            <label mean-token="'create-content'" for="address" class="col-md-3 control-label">Address</label>
+            <div class="col-md-9">
+              <input name="address" type="text" class="form-control" data-ng-model="contact.ContactInformation.ContactAddress.Address" placeholder="Address" >
+              <!-- <div ng-show="submitted && articleForm.content.$invalid" class="help-block">
+                <p ng-show="articleForm.content.$error.required">Content is required</p>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-error' : submitted && contactForm.organization.$invalid }">
+            <label mean-token="'create-content'" for="city" class="col-md-3 control-label">City</label>
+            <div class="col-md-9">
+              <input name="city" type="text" class="form-control" data-ng-model="contact.ContactInformation.ContactAddress.City" placeholder="City" >
+              <!-- <div ng-show="submitted && articleForm.content.$invalid" class="help-block">
+                <p ng-show="articleForm.content.$error.required">Content is required</p>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-error' : submitted && contactForm.organization.$invalid }">
+            <label mean-token="'create-content'" for="stateorprovince" class="col-md-3 control-label">State or Province</label>
+            <div class="col-md-9">
+              <input name="stateorprovince" type="text" class="form-control" data-ng-model="contact.ContactInformation.ContactAddress.StateOrProvince" placeholder="Email" >
+              <!-- <div ng-show="submitted && articleForm.content.$invalid" class="help-block">
+                <p ng-show="articleForm.content.$error.required">Content is required</p>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-error' : submitted && contactForm.organization.$invalid }">
+            <label mean-token="'create-content'" for="postcode" class="col-md-3 control-label">Post Code</label>
+            <div class="col-md-9">
+              <input name="postcode" type="text" class="form-control" data-ng-model="contact.ContactInformation.ContactAddress.PostCode" placeholder="Post Code" >
+              <!-- <div ng-show="submitted && articleForm.content.$invalid" class="help-block">
+                <p ng-show="articleForm.content.$error.required">Content is required</p>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-error' : submitted && contactForm.organization.$invalid }">
+            <label mean-token="'create-content'" for="country" class="col-md-3 control-label">Country</label>
+            <div class="col-md-9">
+              <input name="country" type="text" class="form-control" data-ng-model="contact.ContactInformation.ContactAddress.Country" placeholder="Country" >
+              <!-- <div ng-show="submitted && articleForm.content.$invalid" class="help-block">
+                <p ng-show="articleForm.content.$error.required">Content is required</p>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-3 col-md-9">
+        <button mean-token="'create-submit'" type="submit" class="btn btn-info">Submit</button>
+      </div>
+    </div>
+  </form>
+  <!-- <h1 data-ng-hide="!articles || articles.length">No articles yet. <br> Why don't you <a href="/articles/create">Create One</a>?</h1> -->
+</section>
