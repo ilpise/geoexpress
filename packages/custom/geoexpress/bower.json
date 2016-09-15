@@ -1,0 +1,8 @@
+{
+  "name": "geoExpress",
+  "version": "0.0.1",
+  "dependencies": {
+    "ui-leaflet": "^1.0.1",
+    "danialfarid-angular-file-upload": "1.4.0"
+  }
+}

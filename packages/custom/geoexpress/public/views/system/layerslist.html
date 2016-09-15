@@ -1,0 +1,28 @@
+<section data-ng-controller="LayersController" data-ng-init="find()">
+  <ul class="articles unstyled">
+    <li data-ng-repeat="layer in layers">
+      <span>{{layer.created | date:'medium'}}</span> /
+      <span>{{layer.user.name}}</span>
+      <h2>
+        <a data-ng-href="/layers/{{layer._id}}">{{layer.title}}</a>
+        <!-- <span data-ng-if="hasAuthorization(layer)"> -->
+        <span>
+          <a class="btn" href="/layers/{{layer._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+          </a>
+          <a class="btn" data-ng-click="remove(layer);">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+        </span>
+      </h2>
+      <ul>
+      <li data-ng-repeat="file in layer.files">
+          <a data-ng-href="{{file.src}}">{{file.name}} is {{file.size}} bytes </a>
+      </li>
+    </ul>
+      <!-- <div>{{layer.content}}</div> -->
+    </li>
+  </ul>
+  <h1 data-ng-hide="!layers || layers.length">No layers yet. <br> Why don't you <a href="/layers/create">Create One</a>?</h1>
+  <a data-ng-hide="!layers.length" href="/layers/create">Add new layer</a>
+</section>

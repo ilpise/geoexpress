@@ -1,0 +1,40 @@
+<section data-ng-controller="LayersController">
+  <form name="layerForm" class="form-horizontal col-md-6" role="form" data-ng-submit="create(layerForm.$valid)" novalidate>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && layerForm.title.$invalid }">
+      <label mean-token="'create-title'" class="col-md-3 control-label">Layer name</label>
+      <div class="col-md-9">
+        <input name="title" type="text" class="form-control" data-ng-model="layer.title" id="title" placeholder="Insert a name to identify the layer" required>
+        <div ng-show="submitted && layerForm.title.$invalid" class="help-block">
+          <p ng-show="layerForm.title.$error.required">Title is required</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && layerForm.content.$invalid }">
+      <label mean-token="'create-content'" for="content" class="col-md-3 control-label">Select files click Choose FIles</label>
+      <div class="col-md-9">
+        <layer-upload file-dest="'/layers/'" upload-callback="layerFinished(files)" upload-file-callback="layerFileCallback(file)"></layer-upload>
+        <!-- <textarea name="content" data-ng-model="layer.content" id="content" cols="30" rows="10" placeholder="Content" class="form-control" required></textarea> -->
+        <div ng-show="submitted && layerForm.content.$invalid" class="help-block">
+          <p ng-show="layerForm.content.$error.required">Content is required</p>
+        </div>
+        <p><span>{{files.length}}</span> files have been loaded.</p>
+      </div>
+    </div>
+
+
+
+     <div class="form-group" ng-show="descendants.length">
+        <label mean-token="'descendants'" for="descendants" class="col-md-3 control-label">Descendants</label>
+        <div class="col-md-9">
+          <span ng-repeat="descendant in descendants">{{descendant}} <span ng-hide="$last">, </span></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-3 col-md-9">
+        <button mean-token="'create-submit'" type="submit" class="btn btn-info">Submit</button>
+      </div>
+    </div>
+  </form>
+</section>

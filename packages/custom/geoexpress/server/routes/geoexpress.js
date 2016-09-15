@@ -30,6 +30,32 @@
       app.route('/api/geoexpress/contact/:contactId')
           .put(contact.update);
 
+      //
+      // Layers - server routing
+      //
+      var layers = require('../controllers/layers')(GeoExpress);
+      app.route('/api/layers')
+        .get(layers.all)
+        // .post(requiresLogin, hasPermissions, layers.create);
+        .post(layers.create);
+      app.route('/api/layers/:layerId')
+        // .get(auth.isMongoId, layers.show)
+        // .put(auth.isMongoId, requiresLogin, hasAuthorization, hasPermissions, layers.update)
+        // .delete(auth.isMongoId, requiresLogin, hasAuthorization, hasPermissions, layers.destroy);
+        .get(layers.show)
+        .put(layers.update)
+        .delete(layers.destroy);
+      // Finish with setting up the layerId param
+      app.param('layerId', layers.layer);
+
+      // Layers upload functionalities
+      // NOTE here we are not casting the meanUpload variable with the (GeoExpress)
+      var multipart = require('connect-multiparty'),
+          multipartMiddleware = multipart(),
+          meanUpload = require('../controllers/meanUpload');
+
+      app.post('/api/layerUpload/upload', multipartMiddleware, meanUpload.upload);
+
       // NOTE Simple swig rendering
       app.get('/api/geoexpress/simpleswig', function(req, res) {
         var title = 'Swig Primer!'

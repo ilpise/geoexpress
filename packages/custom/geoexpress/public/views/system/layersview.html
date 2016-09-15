@@ -1,0 +1,14 @@
+<section data-ng-controller="LayersController" data-ng-init="findOne()">
+  <span>{{layer.created | date:'medium'}}</span> /
+  <span>{{layer.user.name}}</span>
+  <h2>{{layer.title}}</h2>
+  <div data-ng-if="hasAuthorization(layer)">
+    <a class="btn" href="/layers/{{layer._id}}/edit">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn" data-ng-click="remove(layer);">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div>{{layer.content}}</div>
+</section>
