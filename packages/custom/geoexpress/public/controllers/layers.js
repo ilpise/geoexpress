@@ -4,37 +4,55 @@
     /* jshint -W098 */
 
     // Injecting services
-    function LayersController($scope, $location, Global, Layers, $stateParams) {
+    function LayersController($scope, $location, Global, Layers, Maplayers, $http, $stateParams) {
         $scope.global = Global;
         $scope.files = [];
+        $scope.center = {};
+        $scope.mylayer = {};
         // Init function to list layers
         // layerslist.html
         // Layers is the $resource injected service
         $scope.find = function() {
           Layers.query(function(layers) {
             $scope.layers = layers;
-            console.log($scope.layers);
+            // console.log($scope.layers);
+            // Maplayers.addLayer(layers);
+
           });
         };
 
         // Layer creation
         $scope.create = function(isValid) {
           if (isValid) {
-            // $scope.layer.permissions.push('test test');
             var files = $scope.files;
-            // Add files array to the layer object
-            $scope.layer.files = files;
-            var layer = new Layers($scope.layer);
+            // get the shapefile information
+            // we need to pass the path of the file server side to mapnik-omnivore
+            // using the $http service
+            $http
+            .post('/api/geoexpress/layerinfo', {'filepath' : $scope.shapepath})
+            .success(function(data){
+                //what to do here
+                console.log(data)
+                /**/
+                /* Save the layer data in the database */
+                /**/
+                // Add files array to the layer object
+                $scope.layer.files = files;
+                // create a new Layers resource from the layer object
+                var layer = new Layers($scope.layer);
+                // save the layer resource whith it's $save action/method
+                layer.$save(function(response) {
+                  console.log(response)
+                  $location.path('layers/' + response._id);
+                });
+                // reset the scope elements
+                $scope.layer = {};
+                $scope.files = [];
 
-//            console.log(layer);
-
-            layer.$save(function(response) {
-              $location.path('layers');
+            })
+            .error(function(data){
+                console.log('Error: ' + data);
             });
-            // reset the scope elements
-            $scope.layer = {};
-            $scope.files = [];
-
           } else {
             $scope.submitted = true;
           }
@@ -81,12 +99,68 @@
           }, function(layer) {
             $scope.layer = layer;
             console.log($scope.layer)
+
+            var wms = {name: $scope.layer.title,
+                  type :'wms',
+                  visible: true,
+                  url: 'http://127.0.0.1:3000/api/geoexpress/ows',
+                  layerParams: {
+                      layers: $scope.layer.title,
+                      format: 'image/png',
+                      transparent: true
+                  }
+                };
+
+            $scope.mylayer = {
+              baselayers: {
+                xyz: {
+                    name: 'OpenStreetMap (XYZ)',
+                    url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    type: 'xyz'
+                }
+              },
+              overlays: {
+                wms
+              }
+            };
+            $scope.center = {
+              lat: 45.53,
+              lng: 9.35,
+              zoom: 8
+            };
+            // $scope.mylayer = {
+            //   baselayers: {
+            //     xyz: {
+            //         name: 'OpenStreetMap (XYZ)',
+            //         url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            //         type: 'xyz'
+            //     }
+            //   },
+            //   overlays: {
+            //     wms: {
+            //         name: 'Self WMS served layer',
+            //         type: 'wms',
+            //         visible: true,
+            //         url: 'http://127.0.0.1:3000/api/geoexpress/ows',
+            //         layerParams: {
+            //             layers: 'layerdue',
+            //             format: 'image/png',
+            //             transparent: true
+            //         }
+            //     }
+            //   }
+            // };
+
           });
         };
 
         // Layers files upload functionalities
         $scope.layerFileCallback = function(file) {
               console.log(file)
+              if ( (file.type.indexOf('application/x-esri-shape') !== -1) && (file.name.indexOf('shp')  !== -1) ){
+                // console.log(file.src);
+                $scope.shapepath = file.src;
+              }
               $scope.files.push(file);
         };
 
@@ -100,6 +174,6 @@
         .module('mean.geoExpress')
         .controller('LayersController', LayersController);
 
-    LayersController.$inject = ['$scope', '$location', 'Global', 'Layers', '$stateParams'];
+    LayersController.$inject = ['$scope', '$location', 'Global', 'Layers', 'Maplayers', '$http', '$stateParams'];
 
 })();

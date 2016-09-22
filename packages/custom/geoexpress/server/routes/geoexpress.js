@@ -48,6 +48,9 @@
       // Finish with setting up the layerId param
       app.param('layerId', layers.layer);
 
+      app.route('/api/geoexpress/layerinfo')
+        .post(layers.info);
+
       // Layers upload functionalities
       // NOTE here we are not casting the meanUpload variable with the (GeoExpress)
       var multipart = require('connect-multiparty'),
@@ -55,6 +58,25 @@
           meanUpload = require('../controllers/meanUpload');
 
       app.post('/api/layerUpload/upload', multipartMiddleware, meanUpload.upload);
+
+      //
+      // Maps - server routing
+      //
+      var maps = require('../controllers/maps')(GeoExpress);
+      app.route('/api/maps')
+        .get(maps.all)
+        // .post(requiresLogin, hasPermissions, layers.create);
+        .post(maps.create);
+      app.route('/api/maps/:layerId')
+        // .get(auth.isMongoId, layers.show)
+        // .put(auth.isMongoId, requiresLogin, hasAuthorization, hasPermissions, layers.update)
+        // .delete(auth.isMongoId, requiresLogin, hasAuthorization, hasPermissions, layers.destroy);
+        .get(maps.show)
+        .put(maps.update)
+        .delete(maps.destroy);
+      // Finish with setting up the mapId param
+      app.param('mapId', maps.map);
+
 
       // NOTE Simple swig rendering
       app.get('/api/geoexpress/simpleswig', function(req, res) {

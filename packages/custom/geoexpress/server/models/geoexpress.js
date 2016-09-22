@@ -38,26 +38,32 @@ var mongoose = require('mongoose'),
 //   ContactInformation : [contactinformation]
 // });
 
+// var Contact = new Schema({
+//    ContactInformation : [{
+//          ContactPersonPrimary : [{
+//            ContactPerson : String,
+//            ContactOrganization : String
+//          }],
+//          ContactPosition : String,
+//          ContactAddress : [{
+//              AddressType : String,
+//              Address : String,
+//              City : String,
+//              StateOrProvince : String,
+//              PostCode : String,
+//              Country : String
+//          }],
+//          ContactVoiceTelephone : String,
+//          ContactFacsimileTelephone : String,
+//          ContactElectronicMailAddress : String
+//    }]
+// });
+
+// TODO sperimentare 1! object
 var Contact = new Schema({
-   ContactInformation : [{
-         ContactPersonPrimary : [{
-           ContactPerson : String,
-           ContactOrganization : String
-         }],
-         ContactPosition : String,
-         ContactAddress : [{
-             AddressType : String,
-             Address : String,
-             City : String,
-             StateOrProvince : String,
-             PostCode : String,
-             Country : String
-         }],
-         ContactVoiceTelephone : String,
-         ContactFacsimileTelephone : String,
-         ContactElectronicMailAddress : String
-   }]
+   ContactInformation : {}
 });
+
 
 /**
  * Validations

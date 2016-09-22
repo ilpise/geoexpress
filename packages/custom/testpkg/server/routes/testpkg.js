@@ -1,31 +1,59 @@
 (function() {
     'use strict';
 
-    // var mapnik = require('mapnik');
+    // var xml = require('xml');
     /* jshint -W098 */
     // The Package is past automatically as first parameter
     module.exports = function(Testpkg, app, auth, database, circles) {
 
+        // var testmapnik = require('../controllers/testmapnik')(Testpkg);
+        // // app.route('/api/mapnik/tests/maps/:mapId/slips/:slipsId')
+        // //    .get(testmapnik.mapnik);
+        //
+        // app.route('/api/mapnik/tests/')
+        //    .get(testmapnik.layeronthefly);
+        //
+        // // route for tileserver
+        // app.route('/api/mapnik/tests/tileserver/:z/:x/:y')
+        //     .get(testmapnik.tileserver);
+
+
         // http://build-failed.blogspot.it/2014/04/generating-server-side-tile-maps-with.html
         var testpkg = require('../controllers/testpkg')(Testpkg);
 
-        // SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&LAYERS=__all__&STYLES=&FORMAT=image%2Fpng&TRANSPARENT=true&HEIGHT=256&WIDTH=256&DETECTRETINA=true&SRS=EPSG%3A3857&BBOX=0,-7.081154551613622e-10,10018754.171394622,10018754.171394626
         // route to web geo services api
-        app.route('/api/testpkg/geowebservices')
-        .get(testpkg.gws);
+        app.route('/api/geoexpress/ows')
+           .get(testpkg.ows);
 
-        // app.route('/api/mapnik/:bbox')
-        // .get(mapnik.wms);
-        // app.route('/api/wms')
-        // .get(mapnik.wms);
+        // TODO Sembra che se non si specifica /api/nomepackage le url non vengono risolte
+        // app.route('/geoexpress/ows')
+        // .get(testpkg.ows);
+
+        // TESTING - add a contact entry in the database
+        app.route('/api/contact')
+           .post(testpkg.create);
+
+        /**/
+        /* Get back an xml formatted file from a server route */
+        /* This can be used to query the database for the contact document and */
+        /* attach it to the WMS GetCapabilities response */
+        /**/
+        // app.get('/api/testpkg/example/anyone', function(req, res) {
+        //
+        //     console.log(database);
+        //
+        //     var jsonobj = [ { toys: [ { toy: 'Transformers' } , { toy: 'GI Joe' }, { toy: 'He-man' } ] } ];
+        //     //console.log(xml(jsonobj));
+        //     var response = xml(jsonobj)
+        //     // res.set('Content-Type', 'text/xml');
+        //     res.type('text/xml');
+        //     //res.render(response); //Error: Failed to lookup view "<toys><toy>Transformers</toy><toy>GI Joe</toy><toy>He-man</toy></toys>" in views directory "/home/ilpise/geoexpress/packages/custom/geoexpress/server/views"
+        //     res.send(response);
+        // });
 
 
         var requiresAdmin = circles.controller.hasCircle('admin');
         var requiresLogin = circles.controller.hasCircle('authenticated');
-
-        app.get('/api/testpkg/example/anyone', function(req, res) {
-            res.send('Anyone can access this');
-        });
 
         app.get('/api/testpkg/example/auth', requiresLogin, function(req, res) {
             res.send('Only authenticated users can access this');
@@ -43,22 +71,5 @@
                 res.send(html);
             });
         });
-
-        // app.get('/api/testpkg/wms/render', function(req, res) {
-        //   // var map = new mapnik.Map(256, 256);
-        //   console.log(map);
-        //   var bbox = req.param('bbox');
-        //   bbox.split(',');
-        //   // var token = req.param('token');
-        //   // var geo = req.param('geo');
-        //
-        //   res.send(bbox);
-        // });
-
-        // Finish with setting up the z x y params
-        // app.param('z', mapnik.z);
-        // app.param('x', mapnik.x);
-        // app.param('y', mapnik.y);
-        // app.param('bbox', mapnik.bboxc);
-    };
+      };
 })();

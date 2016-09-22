@@ -1,0 +1,14 @@
+<section data-ng-controller="MapsController" data-ng-init="findOne()">
+  <span>{{map.created | date:'medium'}}</span> /
+  <span>{{map.user.name}}</span>
+  <h2>{{map.title}}</h2>
+  <div data-ng-if="hasAuthorization(map)">
+    <a class="btn" href="/maps/{{map._id}}/edit">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn" data-ng-click="remove(map);">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div>{{map.content}}</div>
+</section>

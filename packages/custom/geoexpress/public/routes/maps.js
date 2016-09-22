@@ -3,27 +3,27 @@
 
     function Geoexpress($stateProvider) {
         $stateProvider
-        .state('layers list', {
-            url: '/layers',
-            templateUrl: 'geoexpress/views/layers/list.html'
+        .state('maps list', {
+            url: '/maps',
+            templateUrl: 'geoexpress/views/maps/list.html'
         })
-        .state('create layer', {
-          url: '/layers/create',
-          templateUrl: '/geoexpress/views/layers/create.html',
+        .state('create map', {
+          url: '/maps/create',
+          templateUrl: '/geoexpress/views/maps/create.html',
           // requiredCircles : {
           //   circles: ['can create content']
           // }
         })
-        .state('edit layer', {
-          url: '/layers/:layerId/edit',
-          templateUrl: '/geoexpress/views/layers/edit.html',
+        .state('edit map', {
+          url: '/maps/:mapId/edit',
+          templateUrl: '/geoexpress/views/maps/edit.html',
           // requiredCircles : {
           //   circles: ['can edit content']
           // }
         })
-        .state('layer by id', {
-          url: '/layers/:layerId',
-          templateUrl: '/geoexpress/views/layers/view.html',
+        .state('map by id', {
+          url: '/maps/:mapId',
+          templateUrl: '/geoexpress/views/maps/view.html',
           // requiredCircles : {
           //   circles: ['authenticated'],
           //   denyState: 'auth.login'

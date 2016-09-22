@@ -1,0 +1,21 @@
+<section data-ng-controller="MapsController" data-ng-init="find()">
+  <ul class="maps unstyled">
+    <li data-ng-repeat="map in maps">
+      <span>{{map.created | date:'medium'}}</span> /
+      <span>{{map.user.name}}</span>
+      <h2>
+        <a data-ng-href="/maps/{{map._id}}">{{map.title}}</a>
+        <span data-ng-if="hasAuthorization(map)">
+          <a class="btn" href="/maps/{{map._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+          </a>
+          <a class="btn" data-ng-click="remove(map);">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+        </span>
+      </h2>
+      <div>{{map.content}}</div>
+    </li>
+  </ul>
+  <h1 data-ng-hide="!maps || maps.length">No maps yet. <br> Why don't you <a href="/maps/create">Create One</a>?</h1>
+</section>

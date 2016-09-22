@@ -19,7 +19,7 @@ function rename(file, dest, user, callback) {
                     size: file.size,
                     type: file.type,
                     created: Date.now(),
-                    createor: (user) ? {
+                    creator: (user) ? {
                         id: user.id,
                         name: user.name
                     } : {}

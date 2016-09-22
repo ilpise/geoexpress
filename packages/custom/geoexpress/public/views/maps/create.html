@@ -1,0 +1,36 @@
+<section data-ng-controller="MapsController">
+  <form name="mapForm" class="form-horizontal col-md-6" role="form" data-ng-submit="create(mapForm.$valid)" novalidate>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && mapForm.title.$invalid }">
+      <label mean-token="'create-title'" class="col-md-3 control-label">Map name</label>
+      <div class="col-md-9">
+        <input name="title" type="text" class="form-control" data-ng-model="map.title" id="title" placeholder="Title" required>
+        <div ng-show="submitted && mapForm.title.$invalid" class="help-block">
+          <p ng-show="mapForm.title.$error.required">Title is required</p>
+        </div>
+      </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-3 col-md-9">
+        <button mean-token="'create-submit'" type="submit" class="btn btn-info">Submit</button>
+      </div>
+    </div>
+  </form>
+
+<leaflet id="mymap" lf-center="center" layers="layers"></leaflet>
+
+</section>
+
+
+<section data-ng-controller="LayersController" data-ng-init="find()">
+  <ul class="articles unstyled">
+    <li data-ng-repeat="layer in layers">
+        <div>{{layer.title}}</div>
+        <!-- <span data-ng-if="hasAuthorization(layer)"> -->
+        <span>
+          <a class="btn" data-ng-click="addtomap(layer);">
+            <i class="glyphicon glyphicon-plus"></i>
+          </a>
+        </span>
+    </li>
+  </ul>
+</section>

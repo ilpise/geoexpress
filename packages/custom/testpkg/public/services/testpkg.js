@@ -4,6 +4,7 @@
     function Testpkg($http, $q) {
         return {
             name: 'testpkg',
+
             checkCircle: function(circle) {
                 var deferred = $q.defer();
 

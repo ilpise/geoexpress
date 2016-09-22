@@ -13,6 +13,8 @@ var Testpkg = new Module('testpkg');
  */
 Testpkg.register(function(app, auth, database, circles) {
 
+  // app is an Express.js instance
+  // console.log(app)
   //We enable routing. By default the Package Object is passed to the routes
   Testpkg.routes(app, auth, database, circles);
 

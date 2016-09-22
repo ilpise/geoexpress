@@ -40,7 +40,14 @@ GeoExpress.register(function(app, users, system) {
     menu: 'main'
   });
 
-  // from mean.io upload  
+  GeoExpress.menus.add({
+    roles: ['authenticated'],
+    title: 'Maps',
+    link: 'maps list',
+    menu: 'main'
+  });
+
+  // from mean.io upload
   app.use('/files/public', express.static(config.root + '/files/public'));
   // Enable server routing. see server/routes/geoexpress.js
   // the server routing seems always prepend the api name in the url
