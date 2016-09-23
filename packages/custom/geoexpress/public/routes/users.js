@@ -1,9 +1,15 @@
-'use strict';
+'use strict'
 
+<<<<<<< HEAD:packages/custom/geoexpress/public/routes/users.js
 //Setting up route
 angular.module('mean.geoExpress').config(['$meanStateProvider',
   function($meanStateProvider) {
 
+=======
+// Setting up route
+angular.module('mean.meanStarter').config(['$meanStateProvider',
+  function ($meanStateProvider) {
+>>>>>>> upstream/master:packages/custom/meanStarter/public/routes/users.js
     // states for users
     $meanStateProvider
       .state('auth', {
@@ -15,8 +21,8 @@ angular.module('mean.geoExpress').config(['$meanStateProvider',
         url: '/login',
         templateUrl: 'geoExpress/views/users/login.html',
         resolve: {
-          loggedin: function(MeanUser) {
-            return MeanUser.checkLoggedOut();
+          loggedin: function (MeanUser) {
+            return MeanUser.checkLoggedOut()
           }
         }
       })
@@ -24,8 +30,8 @@ angular.module('mean.geoExpress').config(['$meanStateProvider',
         url: '/register',
         templateUrl: 'geoExpress/views/users/register.html',
         resolve: {
-          loggedin: function(MeanUser) {
-            return MeanUser.checkLoggedOut();
+          loggedin: function (MeanUser) {
+            return MeanUser.checkLoggedOut()
           }
         }
       })
@@ -33,8 +39,8 @@ angular.module('mean.geoExpress').config(['$meanStateProvider',
         url: '/forgot-password',
         templateUrl: 'geoExpress/views/users/forgot-password.html',
         resolve: {
-          loggedin: function(MeanUser) {
-            return MeanUser.checkLoggedOut();
+          loggedin: function (MeanUser) {
+            return MeanUser.checkLoggedOut()
           }
         }
       })
@@ -42,10 +48,10 @@ angular.module('mean.geoExpress').config(['$meanStateProvider',
         url: '/reset/:tokenId',
         templateUrl: 'geoExpress/views/users/reset-password.html',
         resolve: {
-          loggedin: function(MeanUser) {
-            return MeanUser.checkLoggedOut();
+          loggedin: function (MeanUser) {
+            return MeanUser.checkLoggedOut()
           }
         }
-      });
+      })
   }
-]);
+])
