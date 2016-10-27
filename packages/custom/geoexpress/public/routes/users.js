@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 <<<<<<< HEAD:packages/custom/geoexpress/public/routes/users.js
 //Setting up route
@@ -52,6 +52,6 @@ angular.module('mean.meanStarter').config(['$meanStateProvider',
             return MeanUser.checkLoggedOut()
           }
         }
-      })
+      });
   }
-])
+]);
