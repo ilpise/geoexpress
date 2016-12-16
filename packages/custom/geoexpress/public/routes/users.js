@@ -1,15 +1,9 @@
 'use strict';
 
-<<<<<<< HEAD:packages/custom/geoexpress/public/routes/users.js
 //Setting up route
 angular.module('mean.geoExpress').config(['$meanStateProvider',
   function($meanStateProvider) {
 
-=======
-// Setting up route
-angular.module('mean.meanStarter').config(['$meanStateProvider',
-  function ($meanStateProvider) {
->>>>>>> upstream/master:packages/custom/meanStarter/public/routes/users.js
     // states for users
     $meanStateProvider
       .state('auth', {

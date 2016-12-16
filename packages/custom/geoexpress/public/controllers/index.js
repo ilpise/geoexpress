@@ -1,33 +1,6 @@
 'use strict';
 
 angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
-<<<<<<< HEAD:packages/custom/geoexpress/public/controllers/index.js
-  function($scope, Global) {
-    $scope.global = Global;
-    $scope.sites = {
-      'makeapoint':{
-        'name':'makeapoint',
-        'text':'Makeapoint is a platform to craft and fine-tune ideas and messages providing a graphical experience which brough an offline methodlogy online',
-        'author':'Linnovate',
-        'link':'http://www.linnovate.net',
-        'image':'/geoExpress/assets/img/makeapoint.png'
-      }
-      // 'cactus':{
-      //   'name':'Cactus Intranet',
-      //   'text':'Cactus Intranet is an enterprise social network with features like real-time newsfeed, notifications, groups, events, polls, referral system etc. The system has role based permission system, allowing different stakeholders access and controls relevant to them.',
-      //   'author':'QED42',
-      //   'link':'http://www.qed42.com',
-      //   'image':'/geoExpress/assets/img/cactus.png'
-      // }
-    };
-    $scope.packages = {
-      'gmap':{
-        'name':'gmap',
-        'text':'gmap lets you add geographical information to your applications objects',
-        'author':'linnovate',
-        'link':'http://www.qed42.com',
-        'image':'/geoExpress/assets/img/gmap.png'
-=======
   function ($scope, Global) {
     $scope.global = Global;
     $scope.sites = [{
@@ -50,7 +23,6 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
         'author': 'Linnovate',
         'link': 'http://www.qed42.com',
         'image': '/meanStarter/assets/img/gmap.png'
->>>>>>> upstream/master:packages/custom/meanStarter/public/controllers/index.js
       },
       'upload': {
         'name': 'Upload',
